@@ -1,18 +1,12 @@
 import React from 'react';
 import {
-    Compass,
-    SquareCheck,
     LayoutDashboard,
-    Images,
-    MessageCircleMore,
-    MapPin,
-    CalendarDays,
-    Package2,
-    BadgePercent,
-    ThumbsUp,
-    Backpack,
-    ChevronLeft,
-    ChevronRight
+    History,
+    ClipboardList,
+    UserRoundPlus,
+    CircleChevronRight,
+    CircleChevronLeft,
+    PackagePlus
 } from "lucide-react";
 import { NavLink } from 'react-router-dom';
 
@@ -26,19 +20,20 @@ export const Slider = ({ isCollapsed, setIsCollapsed }) => {
     };
 
     return (
-        <aside className={`bg-white shadow-lg h-screen fixed transition-all duration-300 ${isCollapsed ? 'w-20' : 'w-64'}`}>
-            <div className="flex items-center justify-between p-4">
-                <div className="flex items-center space-x-2">
-                    <MapPin className="text-blue-500" />
-                    {!isCollapsed && <h2 className="text-xl font-medium">Travelie</h2>}
+        <aside className={`bg-white shadow-lg h-screen fixed flex flex-col items-center transition-all duration-300 ${isCollapsed ? 'w-20' : 'w-64'}`}>
+            
+            <div className="flex items-center justify-around pt-6 pr-2">
+                <div className="flex items-start space-x-1">
+                    {/* <Building2 className='text-gray-500 mr-2'/> */}
+                    {!isCollapsed && <h2 className="text-xl font-medium pr-8">New Project</h2>}
                 </div>
-                <button onClick={toggleCollapse} className="text-gray-600 hover:text-gray-800 focus:outline-none">
-                    {isCollapsed ? <ChevronRight /> : <ChevronLeft />}
+                <button onClick={toggleCollapse} className="text-gray-600 flex items-center pl-2 rounded-lg font-medium">
+                    {isCollapsed ? <CircleChevronRight className='hover:text-sky-400 cursor-pointer' /> : <CircleChevronLeft className='text-sky-400 hover:text-gray-500 cursor-pointer' />}
                 </button>
             </div>
             <nav className="mt-5">
                 <ul className="space-y-2">
-                    <li>
+                    <li> 
                         <NavLink
                             to="/dashboard"
                             className={({ isActive }) =>
@@ -46,54 +41,58 @@ export const Slider = ({ isCollapsed, setIsCollapsed }) => {
                             }
                             end
                         >
-                            <LayoutDashboard className="mr-2" />
+                            <LayoutDashboard className="mr-2  ml-2 " />
                             {!isCollapsed && "Dashboard"}
                         </NavLink>
                     </li>
                     <li>
                         <NavLink
-                            to="/dashboard/packages"
+                            to="/dashboard/usuarios"
                             className={({ isActive }) =>
                                 `flex items-center p-3 rounded-lg font-medium ${isActive ? activeClass : inactiveClass}`
                             }
                         >
-                            <Package2 className="mr-2" />
-                            {!isCollapsed && "Packages"}
+                            <UserRoundPlus className="mr-2 ml-2"/>
+                            {!isCollapsed && "Registro de Usuarios"}
                         </NavLink>
                     </li>
-                    <li className="flex items-center p-3 hover:bg-gray-200 rounded font-medium text-gray-600">
-                        <SquareCheck className="mr-2" />
-                        {!isCollapsed && "Bookings"}
+                    <li>
+                        <NavLink
+                            to="/dashboard/beacons"
+                            className={({ isActive }) =>
+                                `flex items-center p-3 rounded-lg font-medium ${isActive ? activeClass : inactiveClass}`
+                            }
+                        >
+                            <PackagePlus className="mr-2 ml-2"/>
+                            {!isCollapsed && "Registro de Beacons"}
+                        </NavLink>
                     </li>
-                    <li className="flex items-center p-3 hover:bg-gray-200 rounded font-medium text-gray-600">
-                        <CalendarDays className="mr-2" />
-                        {!isCollapsed && "Calendar"}
+                    <li>
+                        <NavLink
+                            to="/dashboard/asignaciones"
+                            className={({ isActive }) =>
+                                `flex items-center p-3 rounded-lg font-medium ${isActive ? activeClass : inactiveClass}`
+                            }
+                        >
+                            <ClipboardList  className="mr-2 ml-2"  />
+                            {!isCollapsed && "Registro de Asignaciones"}
+                        </NavLink>
+                        
                     </li>
-                    <li className="flex items-center p-3 hover:bg-gray-200 rounded font-medium text-gray-600">
-                        <Backpack className="mr-2" />
-                        {!isCollapsed && "Travelers"}
+                    <li>
+                        <NavLink
+                            to="/dashboard/historial"
+                            className={({ isActive }) =>
+                                `flex items-center p-3 rounded-lg font-medium ${isActive ? activeClass : inactiveClass}`
+                            }
+                        >
+                            <History  className="mr-2 ml-2" />
+                            {!isCollapsed && "Historial"}
+                        </NavLink>
+                        
                     </li>
-                    <li className="flex items-center p-3 hover:bg-gray-200 rounded font-medium text-gray-600">
-                        <Compass className="mr-2" />
-                        {!isCollapsed && "Guides"}
-                    </li>
-                    <li className="flex items-center p-3 hover:bg-gray-200 rounded font-medium text-gray-600">
-                        <Images className="mr-2" />
-                        {!isCollapsed && "Gallery"}
-                    </li>
-                    <li className="flex items-center p-3 hover:bg-gray-200 rounded font-medium relative text-gray-600">
-                        <MessageCircleMore className="mr-2" />
-                        {!isCollapsed && "Messages"}
-                        <span className="absolute right-2 bg-cyan-500 text-white text-xs rounded-sm w-5 h-5 flex items-center justify-center">7</span>
-                    </li>
-                    <li className="flex items-center p-3 hover:bg-gray-200 rounded font-medium text-gray-600">
-                        <BadgePercent className="mr-2" />
-                        {!isCollapsed && "Deals"}
-                    </li>
-                    <li className="flex items-center p-3 hover:bg-gray-200 rounded font-medium text-gray-600">
-                        <ThumbsUp className="mr-2" />
-                        {!isCollapsed && "Feedback"}
-                    </li>
+                    
+                   
                 </ul>
             </nav>
         </aside>
